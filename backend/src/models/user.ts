@@ -1,4 +1,4 @@
-import mongoose from "mongoose"
+import { Schema, model } from "mongoose"
 import bcrypt from 'bcryptjs'
 
 export type UserType = {
@@ -9,7 +9,7 @@ export type UserType = {
     lastname: string
 }
 
-const userSchema = new mongoose.Schema({
+const userSchema = new Schema({
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true, },
     firstName: { type: String, required: true, },
@@ -23,6 +23,6 @@ userSchema.pre('save', async function (next) {
     next()
 })
 
-const User = mongoose.model<UserType>('User', userSchema)
+const User = model<UserType>('User', userSchema)
 
 export default User
