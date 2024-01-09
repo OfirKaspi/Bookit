@@ -15,7 +15,7 @@ export const DetailsSection = () => {
                     className="border rounded w-full py-1 px-2 font-normal"
                     {...register('name', { required: 'This field is required' })}
                 />
-                {errors.name && <span className="text-red-500">{errors.name.message}</span>}
+                {errors.name && <span className="text-red-500 text-sm font-bold">{errors.name.message}</span>}
             </label>
 
             <div className="flex gap-4">
@@ -26,7 +26,7 @@ export const DetailsSection = () => {
                         className="border rounded w-full py-1 px-2 font-normal"
                         {...register('city', { required: 'This field is required' })}
                     />
-                    {errors.city && <span className="text-red-500">{errors.city.message}</span>}
+                    {errors.city && <span className="text-red-500 text-sm font-bold">{errors.city.message}</span>}
                 </label>
                 <label className="text-gray-700 text-sm font-bold flex-1">
                     Country
@@ -35,7 +35,7 @@ export const DetailsSection = () => {
                         className="border rounded w-full py-1 px-2 font-normal"
                         {...register('country', { required: 'This field is required' })}
                     />
-                    {errors.country && <span className="text-red-500">{errors.country.message}</span>}
+                    {errors.country && <span className="text-red-500 text-sm font-bold">{errors.country.message}</span>}
                 </label>
             </div>
             <label className="text-gray-700 text-sm font-bold flex-1">
@@ -45,7 +45,7 @@ export const DetailsSection = () => {
                     className="border rounded w-full py-1 px-2 font-normal"
                     {...register('description', { required: 'This field is required' })}
                 ></textarea>
-                {errors.description && <span className="text-red-500">{errors.description.message}</span>}
+                {errors.description && <span className="text-red-500 text-sm font-bold">{errors.description.message}</span>}
             </label>
             <label className="text-gray-700 text-sm font-bold max-w-[50%]">
                 Price Per Night
@@ -55,7 +55,7 @@ export const DetailsSection = () => {
                     className="border rounded w-full py-1 px-2 font-normal"
                     {...register('pricePerNight', { required: 'This field is required' })}
                 />
-                {errors.pricePerNight && <span className="text-red-500">{errors.pricePerNight.message}</span>}
+                {errors.pricePerNight && <span className="text-red-500 text-sm font-bold">{errors.pricePerNight.message}</span>}
             </label>
             <label className="text-gray-700 text-sm font-bold max-w-[50%]">
                 Star Rating
@@ -69,7 +69,7 @@ export const DetailsSection = () => {
                         <option value={num} >{num}</option>
                     ))}
                 </select>
-                {errors.starRating && <span className="text-red-500">{errors.starRating.message}</span>}
+                {errors.starRating && <span className="text-red-500 text-sm font-bold">{errors.starRating.message}</span>}
             </label>
         </div>
     )
