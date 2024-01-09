@@ -12,7 +12,6 @@ export const GuestsSection = () => {
                     Adults
                     <input
                         type="number"
-                        value={1}
                         min={1}
                         className="border rounded w-full py-2 px-3 font-normal"
                         {...register('adultCount', { required: 'This field is required' })}
@@ -23,7 +22,6 @@ export const GuestsSection = () => {
                     Children
                     <input
                         type="number"
-                        value={0}
                         min={0}
                         className="border rounded w-full py-2 px-3 font-normal"
                         {...register('childCount', { required: 'This field is required' })}
