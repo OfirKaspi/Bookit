@@ -6,7 +6,6 @@ import cookieParser from 'cookie-parser'
 import path, { join } from 'path'
 import { v2 as cloudinary } from 'cloudinary'
 
-
 import userRoutes from './routes/users'
 import authRoutes from './routes/auth'
 import myHotelRoutes from './routes/my-hotels'
