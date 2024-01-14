@@ -72,3 +72,10 @@ export const fetchMyHotels = async (): Promise<HotelType[]> => {
     if (!response.ok) throw new Error('Eror fetching hotels')
     return response.json()
 }
+
+// NEED TO SEE WHATS WRONG WITH THE FORM
+export const fetchMyHotelById = async (hotelId: string): Promise<HotelType> => {
+    const response = await fetch(`${API_BASE_URL}/api/my-hotels/${hotelId}`, { credentials: 'include' })
+    if (!response.ok) throw new Error('Eror fetching hotels')
+    return response.json()
+}
