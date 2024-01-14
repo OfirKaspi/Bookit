@@ -39,7 +39,7 @@ export const ImagesSection = () => {
                     className="w-full text-gray-700 font-normal"
                     {...register('imageFiles', {
                         validate: (imageFiles) => {
-                            const totalLength = imageFiles.length + (existingImageUrls.length || 0)
+                            const totalLength = imageFiles.length + (existingImageUrls?.length || 0)
                             if (totalLength === 0) {
                                 return 'At least one image should be added'
                             } else if (totalLength > 6) {
