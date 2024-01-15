@@ -1,13 +1,15 @@
 import { useQuery } from "react-query"
 import { useSearchContext } from "../contexts/SearchContext"
 import { searchHotels } from "../api-client"
-import { useState } from "react"
+import { ChangeEvent, useState } from "react"
 import { SerachResultsCard } from "../cmps/SerachResultsCard"
 import { Pagination } from "../cmps/Pagination"
+import { StarRatingFilter } from "../cmps/StarRatingFilter"
 
 export const Search = () => {
     const search = useSearchContext()
     const [page, setPage] = useState<number>(1)
+    const [selectedStars, setSelectedStars] = useState<string[]>([])
 
     const searchParams = {
         destination: search.destination,
@@ -16,11 +18,23 @@ export const Search = () => {
         adultCount: search.adultCount.toString(),
         childCount: search.childCount.toString(),
         page: page.toString(),
+        stars: selectedStars,
     }
 
     const { data: hotelData } = useQuery(['searchHotels', searchParams], () =>
         searchHotels(searchParams)
     )
+
+    const handleStarsChange = (event: ChangeEvent<HTMLInputElement>) => {
+        const starRating = event.target.value
+
+        setSelectedStars((prevStars) =>
+            event.target.checked
+                ? [...prevStars, starRating]
+                : prevStars.filter((star) => star !== starRating)
+        )
+
+    }
 
     return (
         <div className="grid grid-cols-1 lg:grid-cols-[250px_1fr] gap-5">
@@ -29,7 +43,7 @@ export const Search = () => {
                     <h3 className="text-lg font-semibold border-b border-slate-300 pb-5">
                         Filter by:
                     </h3>
-                    {/* {TODO FILTERS} */}
+                    <StarRatingFilter selectedStars={selectedStars} onChange={handleStarsChange} />
                 </div>
             </div>
             <div className="flex flex-col gap-5">
