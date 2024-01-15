@@ -2,6 +2,7 @@ import { useQuery } from "react-query"
 import { useSearchContext } from "../contexts/SearchContext"
 import { searchHotels } from "../api-client"
 import { useState } from "react"
+import { SerachResultsCard } from "../cmps/SerachResultsCard"
 
 export const Search = () => {
     const search = useSearchContext()
@@ -16,11 +17,31 @@ export const Search = () => {
         page: page.toString(),
     }
 
-    const { data: hotelData } = useQuery(['searchHotels', searchParams], () => {
+    const { data: hotelData } = useQuery(['searchHotels', searchParams], () =>
         searchHotels(searchParams)
-    })
+    )
 
     return (
-        <>Search Page</>
+        <div className="grid grid-cols-1 lg:grid-cols-[250px_1fr] gap-5">
+            <div className="rounded-lg border border-slate-300 p-5 h-fit sticky top-10">
+                <div className="space-y-5">
+                    <h3 className="text-lg font-semibold border-b border-slate-300 pb-5">
+                        Filter by:
+                    </h3>
+                    {/* {TODO FILTERS} */}
+                </div>
+            </div>
+            <div className="flex flex-col gap-5">
+                <div className="flex justify-between items-center">
+                    <span className="text-xl font-bold">
+                        {hotelData?.pagination.total} Hotels found
+                        {search.destination ? ` in ${search.destination}` : ''}
+                    </span>
+                </div>
+                {hotelData?.data.map((hotel) => (
+                    <SerachResultsCard hotel={hotel} />
+                ))}
+            </div>
+        </div>
     )
 }
