@@ -3,6 +3,7 @@ import { useSearchContext } from "../contexts/SearchContext"
 import { searchHotels } from "../api-client"
 import { useState } from "react"
 import { SerachResultsCard } from "../cmps/SerachResultsCard"
+import { Pagination } from "../cmps/Pagination"
 
 export const Search = () => {
     const search = useSearchContext()
@@ -41,6 +42,13 @@ export const Search = () => {
                 {hotelData?.data.map((hotel) => (
                     <SerachResultsCard hotel={hotel} />
                 ))}
+                <div>
+                    <Pagination
+                        page={hotelData?.pagination.page || 1}
+                        pages={hotelData?.pagination.pages || 1}
+                        onPageChange={(page) => setPage(page)}
+                    />
+                </div>
             </div>
         </div>
     )
