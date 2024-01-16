@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { Layout } from './layouts/Layout'
 import { Register } from './pages/Register';
 import { SignIn } from './pages/SignIn';
 import { AddHotel } from './pages/AddHotel';
@@ -7,6 +6,7 @@ import { useAppContext } from './contexts/AppContext';
 import { MyHotels } from './pages/MyHotels';
 import { EditHotel } from './pages/EditHotel';
 import { Search } from './pages/Search';
+import { Layout } from './layouts/layout';
 
 const App = () => {
 
