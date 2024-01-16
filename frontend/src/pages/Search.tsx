@@ -8,6 +8,7 @@ import { StarRatingFilter } from "../cmps/StarRatingFilter"
 import { HotelTypesFilter } from "../cmps/HotelTypesFilter"
 import { FacilitiesFilter } from "../cmps/FacilitiesFilter"
 import { PriceFilter } from "../cmps/PriceFilter"
+import { SortBy } from "../cmps/SortBy"
 
 export const Search = () => {
     const search = useSearchContext()
@@ -82,16 +83,7 @@ export const Search = () => {
                         {hotelData?.pagination.total} Hotels found
                         {search.destination ? ` in ${search.destination}` : ''}
                     </span>
-                    <select
-                        value={sortOption}
-                        onChange={(event) => setSortOption(event.target.value)}
-                        className="p-2 border rounded-md"
-                    >
-                        <option value="">Sort By</option>
-                        <option value="starRating">Star Rating</option>
-                        <option value="pricePerNightAsc">Price Per Night (low to high)</option>
-                        <option value="pricePerNightDesc">Price Per Night (high to low)</option>
-                    </select>
+                    <SortBy sortOption={sortOption} setSortOption={setSortOption} />
                 </div>
                 {hotelData?.data.map((hotel) => (
                     <SerachResultsCard hotel={hotel} />
