@@ -1,6 +1,8 @@
 import DatePicker from "react-datepicker"
 import { useForm } from "react-hook-form"
 import { useSearchContext } from "../../contexts/SearchContext"
+import { useAppContext } from "../../contexts/AppContext"
+import { useLocation, useNavigate } from "react-router-dom"
 
 type Props = {
     hotelId: string
@@ -16,6 +18,9 @@ type GuestInfoFormData = {
 
 export const GuestInfoForm = ({ hotelId, pricePerNight }: Props) => {
     const search = useSearchContext()
+    const { isLoggedIn } = useAppContext()
+    const navigate = useNavigate()
+    const location = useLocation()
 
     const { watch, register, handleSubmit, setValue, formState: { errors } } = useForm<GuestInfoFormData>({
         defaultValues: {
@@ -33,10 +38,20 @@ export const GuestInfoForm = ({ hotelId, pricePerNight }: Props) => {
     const maxDate = new Date()
     maxDate.setFullYear(maxDate.getFullYear() + 1)
 
+    const onSignInClick = (data: GuestInfoFormData) => {
+        search.saveSearchValues('', data.checkIn, data.checkOut, data.adultCount, data.childCount)
+        navigate('/sign-in', { state: { from: location } })
+    }
+
+    const onSubmit = (data: GuestInfoFormData) => {
+        search.saveSearchValues('', data.checkIn, data.checkOut, data.adultCount, data.childCount)
+        navigate(`/hotel/${hotelId}/booking`, { state: { from: location } })
+    }
+
     return (
         <div className="flex flex-col p-4 bg-blue-200 gap-4">
             <h3 className="text-md font-bold">${pricePerNight}</h3>
-            <form>
+            <form onSubmit={isLoggedIn ? handleSubmit(onSubmit) : handleSubmit(onSignInClick)}>
                 <div className="grid grid-cols-1 gap-4 items-center">
                     <div>
                         <DatePicker
@@ -101,6 +116,12 @@ export const GuestInfoForm = ({ hotelId, pricePerNight }: Props) => {
                             </span>
                         )}
                     </div>
+                    {isLoggedIn ? (
+                        <button className="bg-blue-600 text-white h-full p-2 font-bold hover:bg-blue-500 text-xl">Book Now</button>
+                    ) : (
+                        <button className="bg-blue-600 text-white h-full p-2 font-bold hover:bg-blue-500 text-xl">Sign in to Book</button>
+                    )
+                    }
                 </div>
             </form>
         </div>
