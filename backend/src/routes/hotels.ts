@@ -8,8 +8,6 @@ router.get('/search', async (req: Request, res: Response) => {
     try {
         const query = constructSearchQuery(req.query)
 
-        console.log('req.query.sortOption', req.query.sortOption)
-
         let sortOption = {}
         switch (req.query.sortOption) {
             case 'starRating':
@@ -23,8 +21,6 @@ router.get('/search', async (req: Request, res: Response) => {
                 break
 
         }
-
-        console.log('sortOptions', sortOption);
 
         const pageSize = 5
         const pageNumber = parseInt(req.query.page ? req.query.page.toString() : '1')
