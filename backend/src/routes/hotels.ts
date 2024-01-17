@@ -69,7 +69,7 @@ router.get(
     }
 )
 
-router.post('/:hotelId/booking/payment-intent', verifyToken, async (req: Request, res: Response) => {
+router.post('/:hotelId/bookings/payment-intent', verifyToken, async (req: Request, res: Response) => {
     const { numberOfNights } = req.body
     const hotelId = req.params.hotelId
 
