@@ -2,7 +2,7 @@
 
 <p align="center">
   <br/>
-  <img width="full-width" src="URL_TO_YOUR_LOGO_IMAGE" alt="Bookit Logo" />
+  <img width="full-width" src="https://res.cloudinary.com/dudwjf2pu/image/upload/v1705691035/Bookit.com_jn9ebb.svg" alt="Bookit Logo" />
 </p>
 
 ## Overview
