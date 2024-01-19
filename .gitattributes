@@ -1,3 +1,0 @@
-# make the project as TS
-*.ts linguist-language=TypeScript
-*.tsx linguist-language=TypeScript

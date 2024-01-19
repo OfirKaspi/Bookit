@@ -11,10 +11,10 @@ export const Layout = ({ children }: Props) => {
     return <div className="flex flex-col min-h-screen">
         <Header />
         <Hero />
-        <div className="container mx-auto">
+        <div className="container mx-auto p-4">
             <SearchBar />
         </div>
-        <div className="container mx-auto py-10 flex-1">
+        <div className="container mx-auto py-10 flex-1 p-4">
             {children}
         </div>
         <Footer />
