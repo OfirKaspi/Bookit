@@ -21,7 +21,7 @@ export const MyBookings = () => {
                             </div>
                         </div>
                         {hotel.bookings.map((booking) => (
-                            <div>
+                            <div className="border-t pt-4 mr-4">
                                 <div>
                                     <span className="font-bold mr-2">Dates:</span>
                                     <span>

@@ -1,8 +1,8 @@
 export const Footer = () => {
     return (
         <div className="bg-blue-800 p-4">
-            <div className="container mx-auto flex justify-between items-center">
-                <span className="text03xl text-white font-bold tracking-tight">
+            <div className="flex justify-between items-center">
+                <span className="text-3xl text-white font-bold tracking-tight">
                     Bookit.com
                 </span>
                 <span className="text-white font-bold tracking-tight flex gap-4">

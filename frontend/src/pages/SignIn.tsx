@@ -63,7 +63,7 @@ export const SignIn = () => {
                 <span className="text-sm">
                     Not Registered? <Link className="underline" to='/register'>Create an account here</Link>
                 </span>
-                <button type="submit" className="bg-blue-600 text-white p-2 font-bold hover:bg-blue-500 text-xl">
+                <button type="submit" className="rounded bg-blue-600 text-white p-2 font-bold hover:bg-blue-500 text-xl">
                     Login
                 </button>
             </span>
