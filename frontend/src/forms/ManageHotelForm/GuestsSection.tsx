@@ -7,7 +7,7 @@ export const GuestsSection = () => {
     return (
         <div>
             <h2 className="text-2xl font-bold mb-3">Guests</h2>
-            <div className="flex gap-5 bg-gray-300 p-6">
+            <div className="flex rounded gap-5 bg-gray-300 p-6">
                 <label className="text-gray-700 text-sm font-semibold flex-1">
                     Adults
                     <input

@@ -9,7 +9,7 @@ export const TypesSection = () => {
     return (
         <div>
             <h2 className="text-2xl font-bold mb-3">Type</h2>
-            <div className="grid grid-cols-5 gap-2">
+            <div className="grid grid-cols-5 gap-2 items-center text-center">
                 {hotelTypes.map((type) => (
                     <label className={
                         typeWatch === type

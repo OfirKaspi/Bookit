@@ -7,7 +7,7 @@ type Props = {
 
 export const LatestDestinationCard = ({ hotel }: Props) => {
     return (
-        <Link to={`/detail/${hotel._id}`} className="relative cursor-pointer overflow-hidden rounded-md">
+        <Link to={`/detail/${hotel._id}`} className="relative cursor-pointer overflow-hidden rounded-md hover:opacity-90 transition ease-in-out duration-300">
             <div className="h-[300px]">
                 <img src={hotel.imageUrls[0]} className="w-full h-full object-cover object-center" />
             </div>
