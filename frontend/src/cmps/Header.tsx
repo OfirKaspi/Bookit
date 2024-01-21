@@ -7,7 +7,7 @@ export const Header = () => {
     const { isLoggedIn } = useAppContext()
 
     return (
-        <div className="bg-blue-800">
+        <div className="bg-blue-700">
             <div className="container p-4 mx-auto flex justify-between">
                 <span className="flex items-center text-3xl text-white font-bold tracking-tight">
                     <Link to='/'><img src="https://res.cloudinary.com/dudwjf2pu/image/upload/v1705691035/Bookit.com_jn9ebb.svg" alt="bookit image" className="h-[50px]" /></Link>

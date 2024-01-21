@@ -1,6 +1,6 @@
 export const Footer = () => {
     return (
-        <div className="bg-blue-800 p-4">
+        <div className="bg-blue-700 p-4">
             <div className="flex justify-between items-center">
                 <span className="text-3xl text-white font-bold tracking-tight">
                     Bookit.com
