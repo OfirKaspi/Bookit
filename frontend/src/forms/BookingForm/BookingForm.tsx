@@ -5,7 +5,7 @@ import { StripeCardElement } from "@stripe/stripe-js"
 import { useSearchContext } from "../../contexts/SearchContext"
 import { useParams } from "react-router-dom"
 import { useMutation } from "react-query"
-import { createRoomBooking } from "../../api-client"
+import { createRoomBooking } from "../../services/hotel.service"
 import { useAppContext } from "../../contexts/AppContext"
 
 type Props = {

@@ -1,6 +1,6 @@
 import { useQuery } from "react-query"
 import { Link } from "react-router-dom"
-import { fetchMyHotels } from "../api-client"
+import { fetchMyHotels } from "../services/hotel.service"
 import { BsBuilding, BsMap } from "react-icons/bs"
 import { BiHotel, BiMoney, BiStar } from "react-icons/bi"
 

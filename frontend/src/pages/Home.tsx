@@ -1,5 +1,5 @@
 import { useQuery } from "react-query"
-import { fetchHotels } from "../api-client"
+import { fetchHotels } from "../services/hotel.service"
 import { LatestDestinationCard } from "../cmps/LatestDestinationCard"
 
 export const Home = () => {

@@ -1,5 +1,6 @@
 import { useQuery } from "react-query"
-import { createPaymentIntent, fetchCurrentUser, fetchHotelById } from "../api-client"
+import { createPaymentIntent, fetchHotelById } from "../services/hotel.service"
+import { fetchCurrentUser } from "../services/user.service"
 import { BookingForm } from "../forms/BookingForm/BookingForm"
 import { useSearchContext } from "../contexts/SearchContext"
 import { useParams } from "react-router-dom"
