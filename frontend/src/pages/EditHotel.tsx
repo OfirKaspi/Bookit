@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom"
 import { fetchMyHotelById, updateMyHotelById } from "../services/hotel.service"
 import { ManageHotelForm } from "../forms/ManageHotelForm/ManageHotelForm"
 import { useAppContext } from "../contexts/AppContext"
+import { Loader } from "../cmps/Loader"
 
 export const EditHotel = () => {
     const { hotelId } = useParams()
@@ -24,6 +25,8 @@ export const EditHotel = () => {
     const handleSave = (hotelFormData: FormData) => {
         mutate(hotelFormData)
     }
+
+    if (!hotel) return <Loader />
 
     return (
         <ManageHotelForm hotel={hotel} onSave={handleSave} isLoading={isLoading} />

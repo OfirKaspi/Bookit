@@ -1,6 +1,7 @@
 import { useQuery } from "react-query"
 import { fetchHotels } from "../services/hotel.service"
 import { LatestDestinationCard } from "../cmps/LatestDestinationCard"
+import { Loader } from "../cmps/Loader"
 
 export const Home = () => {
 
@@ -8,6 +9,8 @@ export const Home = () => {
 
     const topRowHotels = hotels?.slice(0, 2) || []
     const bottomRowHotels = hotels?.slice(2) || []
+
+    if (!hotels) return <Loader />
 
     return (
         <div className="space-y-3">

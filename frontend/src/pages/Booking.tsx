@@ -8,6 +8,7 @@ import { useEffect, useState } from "react"
 import { BookingDetailsSummary } from "../cmps/BookingDetailsSummary"
 import { useAppContext } from "../contexts/AppContext"
 import { Elements } from "@stripe/react-stripe-js"
+import { Loader } from "../cmps/Loader"
 
 export const Booking = () => {
     const { stripePromise } = useAppContext()
@@ -39,7 +40,7 @@ export const Booking = () => {
         fetchCurrentUser
     )
 
-    if (!hotel) return <></>
+    if (!hotel) return <Loader />
 
     return (
         <div className="grid md:grid-cols-[1fr_2fr] gap-4">

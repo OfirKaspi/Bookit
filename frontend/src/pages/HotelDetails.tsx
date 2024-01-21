@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom"
 import { fetchHotelById } from "../services/hotel.service"
 import { AiFillStar } from "react-icons/ai"
 import { GuestInfoForm } from "../forms/GuestInfoForm/GuestInfoForm"
+import { Loader } from "../cmps/Loader"
 
 export const HotelDetails = () => {
     const { hotelId } = useParams()
@@ -11,7 +12,7 @@ export const HotelDetails = () => {
         enabled: !!hotelId
     })
 
-    if (!hotel) return <></>
+    if (!hotel) return <Loader />
 
     return (
         <div className="space-y-6">

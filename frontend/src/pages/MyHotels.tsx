@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import { fetchMyHotels } from "../services/hotel.service"
 import { BsBuilding, BsMap } from "react-icons/bs"
 import { BiHotel, BiMoney, BiStar } from "react-icons/bi"
+import { Loader } from "../cmps/Loader"
 
 export const MyHotels = () => {
 
@@ -12,7 +13,8 @@ export const MyHotels = () => {
         }
     })
 
-    if (!hotelData) return <span>No Hotels found</span>
+    if (!hotelData) return <Loader />
+    if (hotelData.length === 0) return <span>No hotels found</span>
 
     return (
         <div className="space-y-5">

@@ -1,9 +1,12 @@
 import { useQuery } from "react-query"
 import { fetchMyBookings } from "../services/hotel.service"
+import { Loader } from "../cmps/Loader"
 
 export const MyBookings = () => {
     const { data: hotels } = useQuery('fetchMyBookings', fetchMyBookings)
-    if (!hotels || hotels.length === 0) return <span>No bookings found</span>
+
+    if (!hotels) return <Loader />
+    if (hotels.length === 0) return <span>No bookings found</span>
 
     return (
         <div className="space-y-5">

@@ -9,6 +9,7 @@ import { HotelTypesFilter } from "../cmps/HotelTypesFilter"
 import { FacilitiesFilter } from "../cmps/FacilitiesFilter"
 import { PriceFilter } from "../cmps/PriceFilter"
 import { SortBy } from "../cmps/SortBy"
+import { Loader } from "../cmps/Loader"
 
 export const Search = () => {
     const search = useSearchContext()
@@ -63,6 +64,8 @@ export const Search = () => {
                 : prevFavilities.filter((prevFacility) => prevFacility !== facility)
         )
     }
+
+    if (!hotelData) return <Loader />
 
     return (
         <div className="grid grid-cols-1 lg:grid-cols-[250px_1fr] gap-5">
