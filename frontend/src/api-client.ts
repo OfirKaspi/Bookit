@@ -21,89 +21,149 @@ type SearchParams = {
 };
 
 export const fetchCurrentUser = async (): Promise<UserType> => {
-    const response = await axios.get(`${API_BASE_URL}/api/users/me`, { withCredentials: true });
-    return response.data;
+    try {
+        const response = await axios.get(`${API_BASE_URL}/api/users/me`, { withCredentials: true });
+        return response.data;
+    } catch (error) {
+        throw new Error('Error fetching user');
+    }
 };
 
 export const register = async (formData: RegisterFormData) => {
-    const response = await axios.post(`${API_BASE_URL}/api/users/register`, formData, { withCredentials: true });
-    return response.data;
+    try {
+        const response = await axios.post(`${API_BASE_URL}/api/users/register`, formData, { withCredentials: true });
+        return response.data;
+    } catch (error) {
+        throw new Error('User already exists');
+    }
 };
 
 export const signIn = async (formData: SignInFormData) => {
-    const response = await axios.post(`${API_BASE_URL}/api/auth/login`, formData, { withCredentials: true });
-    return response.data;
+    try {
+        const response = await axios.post(`${API_BASE_URL}/api/auth/login`, formData, { withCredentials: true });
+        return response.data;
+    } catch (error) {
+        throw new Error('Invalid credentials');
+    }
 };
 
 export const validateToken = async () => {
-    const response = await axios.get(`${API_BASE_URL}/api/auth/validate-token`, { withCredentials: true });
-    return response.data;
+    try {
+        const response = await axios.get(`${API_BASE_URL}/api/auth/validate-token`, { withCredentials: true });
+        return response.data;
+    } catch (error) {
+        throw new Error('Token invalid');
+    }
 };
 
 export const signOut = async () => {
-    const response = await axios.post(`${API_BASE_URL}/api/auth/logout`, null, { withCredentials: true });
-    return response.data;
+    try {
+        const response = await axios.post(`${API_BASE_URL}/api/auth/logout`, null, { withCredentials: true });
+        return response.data;
+    } catch (error) {
+        throw new Error('Error during signout');
+    }
 };
 
 export const addMyHotel = async (hotelFormData: FormData) => {
-    const response = await axios.post(`${API_BASE_URL}/api/my-hotels`, hotelFormData, { withCredentials: true });
-    return response.data;
+    try {
+        const response = await axios.post(`${API_BASE_URL}/api/my-hotels`, hotelFormData, { withCredentials: true });
+        return response.data;
+    } catch (error) {
+        throw new Error('Fail to add hotel');
+    }
 };
 
 export const fetchMyHotels = async (): Promise<HotelType[]> => {
-    const response = await axios.get(`${API_BASE_URL}/api/my-hotels`, { withCredentials: true });
-    return response.data;
+    try {
+        const response = await axios.get(`${API_BASE_URL}/api/my-hotels`, { withCredentials: true });
+        return response.data;
+    } catch (error) {
+        throw new Error('Error fetching hotels');
+    }
 };
 
 export const fetchMyHotelById = async (hotelId: string): Promise<HotelType> => {
-    const response = await axios.get(`${API_BASE_URL}/api/my-hotels/${hotelId}`, { withCredentials: true });
-    return response.data;
+    try {
+        const response = await axios.get(`${API_BASE_URL}/api/my-hotels/${hotelId}`, { withCredentials: true });
+        return response.data;
+    } catch (error) {
+        throw new Error('Error fetching hotel');
+    }
 };
 
 export const updateMyHotelById = async (hotelFormData: FormData) => {
-    const response = await axios.put(`${API_BASE_URL}/api/my-hotels/${hotelFormData.get('hotelId')}`, hotelFormData, { withCredentials: true });
-    return response.data;
+    try {
+        const response = await axios.put(`${API_BASE_URL}/api/my-hotels/${hotelFormData.get('hotelId')}`, hotelFormData, { withCredentials: true });
+        return response.data;
+    } catch (error) {
+        throw new Error('Failed to update hotel');
+    }
 };
 
 export const searchHotels = async (searchParams: SearchParams): Promise<HotelSearchResponse> => {
-    const queryParams = new URLSearchParams();
+    try {
+        const queryParams = new URLSearchParams();
 
-    // Manually append each parameter to the URLSearchParams
-    Object.entries(searchParams).forEach(([key, value]) => {
-        if (value !== undefined) {
-            if (Array.isArray(value)) {
-                value.forEach((v) => queryParams.append(key, v));
-            } else {
-                queryParams.append(key, value);
+        // Manually append each parameter to the URLSearchParams
+        Object.entries(searchParams).forEach(([key, value]) => {
+            if (value !== undefined) {
+                if (Array.isArray(value)) {
+                    value.forEach((v) => queryParams.append(key, v));
+                } else {
+                    queryParams.append(key, value);
+                }
             }
-        }
-    });
+        });
 
-    const response = await axios.get(`${API_BASE_URL}/api/hotels/search?${queryParams.toString()}`);
-    return response.data;
+        const response = await axios.get(`${API_BASE_URL}/api/hotels/search?${queryParams.toString()}`);
+        return response.data;
+    } catch (error) {
+        throw new Error('Failed to update hotel');
+    }
 };
 
 export const fetchHotels = async (): Promise<HotelType[]> => {
-    const response = await axios.get(`${API_BASE_URL}/api/hotels`);
-    return response.data;
+    try {
+        const response = await axios.get(`${API_BASE_URL}/api/hotels`);
+        return response.data;
+    } catch (error) {
+        throw new Error('Error fetching hotels');
+    }
 };
 
 export const fetchHotelById = async (hotelId: string): Promise<HotelType> => {
-    const response = await axios.get(`${API_BASE_URL}/api/hotels/${hotelId}`);
-    return response.data;
+    try {
+        const response = await axios.get(`${API_BASE_URL}/api/hotels/${hotelId}`);
+        return response.data;
+    } catch (error) {
+        throw new Error('Error fetching hotel');
+    }
 };
 
 export const createPaymentIntent = async (hotelId: string, numberOfNights: string): Promise<PaymentIntentResponse> => {
-    const response = await axios.post(`${API_BASE_URL}/api/hotels/${hotelId}/bookings/payment-intent`, { numberOfNights }, { withCredentials: true });
-    return response.data;
+    try {
+        const response = await axios.post(`${API_BASE_URL}/api/hotels/${hotelId}/bookings/payment-intent`, { numberOfNights }, { withCredentials: true });
+        return response.data;
+    } catch (error) {
+        throw new Error('Error fetching payment intent');
+    }
 };
 
 export const createRoomBooking = async (formData: BookingFormData) => {
-    const response = await axios.post(`${API_BASE_URL}/api/hotels/${formData.hotelId}/bookings`, formData, { withCredentials: true });
-    return response.data;
+    try {
+        const response = await axios.post(`${API_BASE_URL}/api/hotels/${formData.hotelId}/bookings`, formData, { withCredentials: true });
+        return response.data;
+    } catch (error) {
+        throw new Error('Error booking room');
+    }
 };
 
 export const fetchMyBookings = async (): Promise<HotelType[]> => {
-    const response = await axios.get(`${API_BASE_URL}/api/my-bookings`, { withCredentials: true });
-    return response.data;
+    try {
+        const response = await axios.get(`${API_BASE_URL}/api/my-bookings`, { withCredentials: true });
+        return response.data;
+    } catch (error) {
+        throw new Error('Unable to fetch bookings');
+    }
 };
