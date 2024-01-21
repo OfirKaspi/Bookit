@@ -1,7 +1,7 @@
 import { Header } from "../cmps/Header"
 import { Hero } from "../cmps/Hero"
 import { Footer } from "../cmps/Footer"
-import { SearchBar } from "../cmps/SerachBar"
+import { SearchBar } from "../cmps/SearchBar"
 
 interface Props {
     children: React.ReactNode
