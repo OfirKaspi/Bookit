@@ -1,6 +1,6 @@
 import { useQuery } from "react-query"
 import { useParams } from "react-router-dom"
-import { fetchHotelById } from "../api-client"
+import { fetchHotelById } from "../services/hotel.service"
 import { AiFillStar } from "react-icons/ai"
 import { GuestInfoForm } from "../forms/GuestInfoForm/GuestInfoForm"
 

@@ -1,8 +1,8 @@
 import { ReactNode, createContext, useContext, useState } from "react"
 import { Toast } from "../cmps/Toast"
 import { useQuery } from "react-query"
-import * as apiClient from '../api-client'
 import { loadStripe, Stripe } from "@stripe/stripe-js"
+import { validateToken } from "../services/user.service"
 
 const STRIPE_PUB_KEY = import.meta.env.VITE_STRIPE_PUB_KEY || ''
 
@@ -24,7 +24,7 @@ const stripePromise = loadStripe(STRIPE_PUB_KEY)
 export const AppContextProvider = ({ children }: { children: ReactNode }) => {
     const [toast, setToast] = useState<ToastMessage | undefined>(undefined)
 
-    const { isError } = useQuery('validateToken', apiClient.validateToken, {
+    const { isError } = useQuery('validateToken', validateToken, {
         retry: false
     })
 

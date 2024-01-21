@@ -1,6 +1,6 @@
 import { HotelSearchResponse, HotelType, PaymentIntentResponse } from "../../../backend/src/shared/types"
 import { BookingFormData } from "../forms/BookingForm/BookingForm";
-import axios from "axios";
+import Axios from "axios";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || ''
 
@@ -20,7 +20,7 @@ type SearchParams = {
 
 export const addMyHotel = async (hotelFormData: FormData) => {
     try {
-        const response = await axios.post(`${API_BASE_URL}/api/my-hotels`, hotelFormData, { withCredentials: true });
+        const response = await Axios.post(`${API_BASE_URL}/api/my-hotels`, hotelFormData, { withCredentials: true });
         return response.data;
     } catch (error) {
         throw new Error('Fail to add hotel');
@@ -29,7 +29,7 @@ export const addMyHotel = async (hotelFormData: FormData) => {
 
 export const fetchMyHotels = async (): Promise<HotelType[]> => {
     try {
-        const response = await axios.get(`${API_BASE_URL}/api/my-hotels`, { withCredentials: true });
+        const response = await Axios.get(`${API_BASE_URL}/api/my-hotels`, { withCredentials: true });
         return response.data;
     } catch (error) {
         throw new Error('Error fetching hotels');
@@ -38,7 +38,7 @@ export const fetchMyHotels = async (): Promise<HotelType[]> => {
 
 export const fetchMyHotelById = async (hotelId: string): Promise<HotelType> => {
     try {
-        const response = await axios.get(`${API_BASE_URL}/api/my-hotels/${hotelId}`, { withCredentials: true });
+        const response = await Axios.get(`${API_BASE_URL}/api/my-hotels/${hotelId}`, { withCredentials: true });
         return response.data;
     } catch (error) {
         throw new Error('Error fetching hotel');
@@ -47,7 +47,7 @@ export const fetchMyHotelById = async (hotelId: string): Promise<HotelType> => {
 
 export const updateMyHotelById = async (hotelFormData: FormData) => {
     try {
-        const response = await axios.put(`${API_BASE_URL}/api/my-hotels/${hotelFormData.get('hotelId')}`, hotelFormData, { withCredentials: true });
+        const response = await Axios.put(`${API_BASE_URL}/api/my-hotels/${hotelFormData.get('hotelId')}`, hotelFormData, { withCredentials: true });
         return response.data;
     } catch (error) {
         throw new Error('Failed to update hotel');
@@ -69,7 +69,7 @@ export const searchHotels = async (searchParams: SearchParams): Promise<HotelSea
             }
         });
 
-        const response = await axios.get(`${API_BASE_URL}/api/hotels/search?${queryParams.toString()}`);
+        const response = await Axios.get(`${API_BASE_URL}/api/hotels/search?${queryParams.toString()}`);
         return response.data;
     } catch (error) {
         throw new Error('Failed to update hotel');
@@ -78,7 +78,7 @@ export const searchHotels = async (searchParams: SearchParams): Promise<HotelSea
 
 export const fetchHotels = async (): Promise<HotelType[]> => {
     try {
-        const response = await axios.get(`${API_BASE_URL}/api/hotels`);
+        const response = await Axios.get(`${API_BASE_URL}/api/hotels`);
         return response.data;
     } catch (error) {
         throw new Error('Error fetching hotels');
@@ -87,7 +87,7 @@ export const fetchHotels = async (): Promise<HotelType[]> => {
 
 export const fetchHotelById = async (hotelId: string): Promise<HotelType> => {
     try {
-        const response = await axios.get(`${API_BASE_URL}/api/hotels/${hotelId}`);
+        const response = await Axios.get(`${API_BASE_URL}/api/hotels/${hotelId}`);
         return response.data;
     } catch (error) {
         throw new Error('Error fetching hotel');
@@ -96,7 +96,7 @@ export const fetchHotelById = async (hotelId: string): Promise<HotelType> => {
 
 export const createPaymentIntent = async (hotelId: string, numberOfNights: string): Promise<PaymentIntentResponse> => {
     try {
-        const response = await axios.post(`${API_BASE_URL}/api/hotels/${hotelId}/bookings/payment-intent`, { numberOfNights }, { withCredentials: true });
+        const response = await Axios.post(`${API_BASE_URL}/api/hotels/${hotelId}/bookings/payment-intent`, { numberOfNights }, { withCredentials: true });
         return response.data;
     } catch (error) {
         throw new Error('Error fetching payment intent');
@@ -105,7 +105,7 @@ export const createPaymentIntent = async (hotelId: string, numberOfNights: strin
 
 export const createRoomBooking = async (formData: BookingFormData) => {
     try {
-        const response = await axios.post(`${API_BASE_URL}/api/hotels/${formData.hotelId}/bookings`, formData, { withCredentials: true });
+        const response = await Axios.post(`${API_BASE_URL}/api/hotels/${formData.hotelId}/bookings`, formData, { withCredentials: true });
         return response.data;
     } catch (error) {
         throw new Error('Error booking room');
@@ -114,7 +114,7 @@ export const createRoomBooking = async (formData: BookingFormData) => {
 
 export const fetchMyBookings = async (): Promise<HotelType[]> => {
     try {
-        const response = await axios.get(`${API_BASE_URL}/api/my-bookings`, { withCredentials: true });
+        const response = await Axios.get(`${API_BASE_URL}/api/my-bookings`, { withCredentials: true });
         return response.data;
     } catch (error) {
         throw new Error('Unable to fetch bookings');

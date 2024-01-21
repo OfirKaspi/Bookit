@@ -1,5 +1,5 @@
 import { useQuery } from "react-query"
-import { fetchMyBookings } from "../api-client"
+import { fetchMyBookings } from "../services/hotel.service"
 
 export const MyBookings = () => {
     const { data: hotels } = useQuery('fetchMyBookings', fetchMyBookings)

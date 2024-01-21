@@ -1,6 +1,6 @@
 import { useQuery } from "react-query"
 import { useSearchContext } from "../contexts/SearchContext"
-import { searchHotels } from "../api-client"
+import { searchHotels } from "../services/hotel.service"
 import { ChangeEvent, useState } from "react"
 import { SerachResultsCard } from "../cmps/SerachResultsCard"
 import { Pagination } from "../cmps/Pagination"

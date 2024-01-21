@@ -1,13 +1,13 @@
 import { useMutation } from "react-query"
 import { ManageHotelForm } from "../forms/ManageHotelForm/ManageHotelForm"
-import * as apiClient from '../api-client'
 import { useAppContext } from "../contexts/AppContext"
+import { addMyHotel } from "../services/hotel.service"
 
 export const AddHotel = () => {
 
     const { showToast } = useAppContext()
 
-    const { mutate, isLoading } = useMutation(apiClient.addMyHotel, {
+    const { mutate, isLoading } = useMutation(addMyHotel, {
         onSuccess: async () => {
             showToast({ message: 'Hotel Saved!', type: 'SUCCESS' })
         },
