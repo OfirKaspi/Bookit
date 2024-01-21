@@ -2,7 +2,7 @@ import { useQuery } from "react-query"
 import { useSearchContext } from "../contexts/SearchContext"
 import { searchHotels } from "../services/hotel.service"
 import { ChangeEvent, useState } from "react"
-import { SerachResultsCard } from "../cmps/SerachResultsCard"
+import { SearchResultsCard } from "../cmps/SearchResultsCard"
 import { Pagination } from "../cmps/Pagination"
 import { StarRatingFilter } from "../cmps/StarRatingFilter"
 import { HotelTypesFilter } from "../cmps/HotelTypesFilter"
@@ -86,7 +86,7 @@ export const Search = () => {
                     <SortBy sortOption={sortOption} setSortOption={setSortOption} />
                 </div>
                 {hotelData?.data.map((hotel) => (
-                    <SerachResultsCard hotel={hotel} />
+                    <SearchResultsCard hotel={hotel} />
                 ))}
                 <div>
                     <Pagination

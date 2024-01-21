@@ -6,18 +6,18 @@ import "react-datepicker/dist/react-datepicker.css"
 import { useNavigate } from "react-router-dom"
 
 export const SearchBar = () => {
-    const serach = useSearchContext()
+    const search = useSearchContext()
     const navigate = useNavigate()
 
-    const [destination, setDestination] = useState<string>(serach.destination)
-    const [checkIn, setCheckIn] = useState<Date>(serach.checkIn)
-    const [checkOut, setCheckOut] = useState<Date>(serach.checkOut)
-    const [adultCount, setAdultCount] = useState<number>(serach.adultCount)
-    const [childCount, setChildCount] = useState<number>(serach.childCount)
+    const [destination, setDestination] = useState<string>(search.destination)
+    const [checkIn, setCheckIn] = useState<Date>(search.checkIn)
+    const [checkOut, setCheckOut] = useState<Date>(search.checkOut)
+    const [adultCount, setAdultCount] = useState<number>(search.adultCount)
+    const [childCount, setChildCount] = useState<number>(search.childCount)
 
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault()
-        serach.saveSearchValues(
+        search.saveSearchValues(
             destination,
             checkIn,
             checkOut,
