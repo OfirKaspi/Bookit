@@ -4,6 +4,8 @@ import jwt from 'jsonwebtoken'
 import { check, validationResult } from 'express-validator'
 import bcrypt from 'bcryptjs'
 import { verifyToken } from '../middleware/auth'
+import { logger } from '../services/logger.service'
+
 
 const router = express.Router()
 
@@ -35,8 +37,8 @@ router.post('/login', [
 
             res.status(200).json({ userId: user._id })
         } catch (err) {
-            console.log(err)
-            res.status(500).send({ message: 'Something went wrong' })
+            logger.error('Failed to login: ', err)
+            res.status(500).send({ message: 'Failed to login' })
         }
     }
 )

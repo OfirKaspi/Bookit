@@ -4,6 +4,7 @@ import { BookingType, HotelSearchResponse } from '../shared/types'
 import { param, validationResult } from 'express-validator'
 import Stripe from 'stripe'
 import { verifyToken } from '../middleware/auth'
+import { logger } from '../services/logger.service'
 
 const stripe = new Stripe(process.env.STRIPE_API_KEY as string)
 
@@ -44,8 +45,8 @@ router.get('/search', async (req: Request, res: Response) => {
 
         res.json(response)
     } catch (err) {
-        console.log('error', err)
-        res.status(500).send({ message: 'Something went wrong' })
+        logger.error('Failed to get hotels: ', err)
+        res.status(500).send({ message: 'Failed to get hotels' })
     }
 })
 
@@ -54,7 +55,7 @@ router.get('/', async (req: Request, res: Response) => {
         const hotels = await Hotel.find().sort('-lastUpdated')
         res.json(hotels)
     } catch (err) {
-        console.log('error', err)
+        logger.error('Error fetching hotels', err)
         res.status(500).send({ message: 'Error fetching hotels' })
     }
 })
@@ -73,7 +74,7 @@ router.get(
             const hotel = await Hotel.findById(id)
             res.json(hotel)
         } catch (err) {
-            console.log('error', err)
+            logger.error('Error fetching hotel: ', err)
             res.status(500).send({ message: 'Error fetching hotel' })
         }
     }
@@ -139,7 +140,7 @@ router.post('/:hotelId/bookings', verifyToken, async (req: Request, res: Respons
         res.status(200).send()
 
     } catch (err) {
-        console.log('error', err)
+        logger.error('Something went wrong: ', err)
         res.status(500).send({ message: 'Something went wrong' })
     }
 })

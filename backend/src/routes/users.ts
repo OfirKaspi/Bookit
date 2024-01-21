@@ -3,6 +3,7 @@ import User from '../models/user'
 import jwt from 'jsonwebtoken'
 import { check, validationResult } from 'express-validator'
 import { verifyToken } from '../middleware/auth'
+import { logger } from '../services/logger.service'
 
 const router = express.Router()
 
@@ -14,7 +15,7 @@ router.get('/me', verifyToken, async (req: Request, res: Response) => {
         if (!user) return res.status(400).send({ message: 'User not found' })
         res.json(user)
     } catch (err) {
-        console.log(err)
+        logger.error('Something went wrong: ', err)
         res.status(500).send({ message: 'Something went wrong' })
     }
 })
@@ -48,7 +49,7 @@ router.post('/register', [
 
             return res.status(200).send({ message: 'User registered OK!' })
         } catch (err) {
-            console.log(err)
+            logger.error('Something went wrong: ', err)
             res.status(500).send({ message: 'Something went wrong' })
         }
     })

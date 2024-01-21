@@ -11,6 +11,7 @@ import authRoutes from './routes/auth'
 import hotelRoutes from './routes/hotels'
 import myHotelRoutes from './routes/my-hotels'
 import bookingRoutes from './routes/my-bookings'
+import { logger } from './services/logger.service'
 
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -19,6 +20,8 @@ cloudinary.config({
 })
 
 mongoose.connect(process.env.MONGODB_CONNECTION_STRING as string)
+
+logger.info('server.ts loaded...')
 
 const app = express()
 app.use(cookieParser())
@@ -42,5 +45,5 @@ app.get('*', (req: Request, res: Response) => {
 })
 
 app.listen(7000, () => {
-    console.log('server running on localhost:7000')
+    logger.info('server running on localhost:7000')
 })

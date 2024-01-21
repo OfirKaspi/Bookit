@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express'
 import { verifyToken } from '../middleware/auth'
 import Hotel from '../models/hotel'
 import { HotelType } from '../shared/types'
+import { logger } from '../services/logger.service'
 
 const router = express.Router()
 
@@ -26,7 +27,7 @@ router.get('/', verifyToken, async (req: Request, res: Response) => {
 
         res.status(200).send(results)
     } catch (err) {
-        console.log('error', err)
+        logger.error('Something went wrong', err)
         res.status(500).send({ message: 'Something went wrong' })
     }
 })

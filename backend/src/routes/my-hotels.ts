@@ -5,6 +5,7 @@ import Hotel from '../models/hotel'
 import { verifyToken } from '../middleware/auth'
 import { body } from 'express-validator'
 import { HotelType } from '../shared/types'
+import { logger } from '../services/logger.service'
 
 const router = express.Router()
 
@@ -49,7 +50,7 @@ router.post(
             res.status(201).send(hotel)
 
         } catch (err) {
-            console.log('Error creating hotel: ', err)
+            logger.error('Error creating hotel: ', err)
             res.status(500).json({ message: 'Something went wrong' })
         }
     }
@@ -60,6 +61,7 @@ router.get('/', verifyToken, async (req: Request, res: Response) => {
         const hotels = await Hotel.find({ userId: req.userId })
         res.json(hotels)
     } catch (err) {
+        logger.error('Error fetching hotels: ', err)
         res.status(500).json({ message: 'Error fetching hotels' })
     }
 })
@@ -70,6 +72,7 @@ router.get('/:id', verifyToken, async (req: Request, res: Response) => {
         const hotel = await Hotel.findOne({ _id: id, userId: req.userId })
         res.json(hotel)
     } catch (err) {
+        logger.error('Error fetching hotels: ', err)
         res.status(500).json({ message: 'Error fetching hotels' })
     }
 })
@@ -98,6 +101,7 @@ router.put('/:hotelId', verifyToken, upload.array('imageFiles'), async (req: Req
         await hotel.save()
         res.status(201).json(hotel)
     } catch (err) {
+        logger.error('Something went wrong: ', err)
         res.status(500).json({ message: 'Something went wrong!' })
     }
 })
