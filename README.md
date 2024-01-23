@@ -1,4 +1,4 @@
-<h1 align="center">Bookit<br/>Hotel Booking Application</h1>
+<h1 align="center">Bookit <br/>Hotel Booking Application</h1>
 
 <p align="center">
   <br/>
