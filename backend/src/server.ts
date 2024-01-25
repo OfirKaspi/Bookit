@@ -6,11 +6,11 @@ import cookieParser from 'cookie-parser'
 import path, { join } from 'path'
 import { v2 as cloudinary } from 'cloudinary'
 
-import userRoutes from './routes/users'
-import authRoutes from './routes/auth'
-import hotelRoutes from './routes/hotels'
-import myHotelRoutes from './routes/my-hotels'
-import bookingRoutes from './routes/my-bookings'
+import userRoutes from './api/users'
+import authRoutes from './api/auth/auth.routes'
+import hotelRoutes from './api/hotels'
+import myHotelRoutes from './api/my-hotels'
+import bookingRoutes from './api/my-bookings'
 import { logger } from './services/logger.service'
 
 cloudinary.config({
