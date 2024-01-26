@@ -1,6 +1,6 @@
 import express from 'express';
 import { check } from 'express-validator';
-import * as HotelController from './hotel.controller';
+import * as HotelController from './hotels.controller';
 import { verifyToken } from '../../middleware/auth';
 
 const router = express.Router();

@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { validationResult } from 'express-validator';
 import Stripe from 'stripe';
 import { logger } from '../../services/logger.service';
-import * as hotelService from './hotel.service';
+import * as hotelService from './hotels.service';
 
 const stripe = new Stripe(process.env.STRIPE_API_KEY as string);
 
