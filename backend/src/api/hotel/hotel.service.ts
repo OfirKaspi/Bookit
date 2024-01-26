@@ -96,6 +96,7 @@ export const createBooking = async (req: Request) => {
     }
 }
 
+// GOOD!
 export const createBookingPaymentIntent = async (req: Request) => {
     try {
         const { numberOfNights } = req.body

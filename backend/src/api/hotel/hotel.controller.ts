@@ -40,9 +40,13 @@ export async function getHotel(req: Request, res: Response) {
     }
 }
 
+// GOOD!
 export async function createBookingPaymentIntent(req: Request, res: Response) {
     try {
+        console.log('here 1');
+
         const response = await hotelService.createBookingPaymentIntent(req);
+        console.log('here 2');
         res.json(response);
     } catch (err) {
         logger.error('Error creating payment intent: ', err);
