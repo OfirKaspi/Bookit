@@ -1,10 +1,10 @@
 import express, { Request, Response } from 'express'
-import Hotel from '../models/hotel'
-import { BookingType, HotelSearchResponse } from '../shared/types'
+import Hotel from '../../models/hotel'
+import { BookingType, HotelSearchResponse } from '../../shared/types'
 import { param, validationResult } from 'express-validator'
 import Stripe from 'stripe'
-import { verifyToken } from '../middleware/auth'
-import { logger } from '../services/logger.service'
+import { verifyToken } from '../../middleware/auth'
+import { logger } from '../../services/logger.service'
 
 const stripe = new Stripe(process.env.STRIPE_API_KEY as string)
 

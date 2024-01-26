@@ -8,7 +8,7 @@ import { v2 as cloudinary } from 'cloudinary'
 
 import userRoutes from './api/users'
 import authRoutes from './api/auth/auth.routes'
-import hotelRoutes from './api/hotels'
+import hotelRoutes from './api/hotel/hotel.routes'
 import myHotelRoutes from './api/my-hotels'
 import bookingRoutes from './api/my-bookings'
 import { logger } from './services/logger.service'
