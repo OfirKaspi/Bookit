@@ -1,11 +1,11 @@
 import express, { Request, Response } from 'express'
 import multer from 'multer'
 import cloudinary from 'cloudinary'
-import Hotel from '../models/hotel'
-import { verifyToken } from '../middleware/auth'
+import Hotel from '../../models/hotel'
+import { verifyToken } from '../../middleware/auth'
 import { body } from 'express-validator'
-import { HotelType } from '../shared/types'
-import { logger } from '../services/logger.service'
+import { HotelType } from '../../shared/types'
+import { logger } from '../../services/logger.service'
 
 const router = express.Router()
 
