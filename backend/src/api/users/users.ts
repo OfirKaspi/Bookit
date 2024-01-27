@@ -1,9 +1,9 @@
 import express, { Request, Response } from 'express'
-import User from '../models/user'
+import User from '../../models/user'
 import jwt from 'jsonwebtoken'
 import { check, validationResult } from 'express-validator'
-import { verifyToken } from '../middleware/auth'
-import { logger } from '../services/logger.service'
+import { verifyToken } from '../../middleware/auth'
+import { logger } from '../../services/logger.service'
 
 const router = express.Router()
 
