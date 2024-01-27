@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import { useAppContext } from "../contexts/AppContext"
 import { SignOutButton } from "./SignOutButton"
 import { useState } from "react"
-import { IoBusinessOutline, IoCalendarOutline, IoEnterOutline, IoHomeOutline, IoLogInOutline, IoPersonAddOutline } from "react-icons/io5";
+import { IoBusinessOutline, IoCalendarOutline, IoEnterOutline, IoHomeOutline, IoPersonAddOutline } from "react-icons/io5";
 
 export const Header = () => {
 
@@ -50,16 +50,16 @@ export const Header = () => {
                 <div className="block container mx-auto rounded px-4 pb-2">
                     <div className="bg-amber-400 rounded p-1">
                         <div className="rounded bg-white p-1">
-                            <Link className="transition-all rounded p-2 flex items-center gap-2 hover:bg-gray-100" to="/">
-                                <IoHomeOutline className="h-5 w-5" />
+                            <Link className="transition-all rounded p-2 flex items-center hover:bg-gray-100" to="/">
+                                <IoHomeOutline size={25} className="mr-2" />
                                 <span>Home</span>
                             </Link>
-                            <Link className="transition-all rounded p-2 flex items-center gap-2 hover:bg-gray-100" to="/my-bookings">
-                                <IoCalendarOutline className="h-5 w-5" />
+                            <Link className="transition-all rounded p-2 flex items-center hover:bg-gray-100" to="/my-bookings">
+                                <IoCalendarOutline size={25} className="mr-2" />
                                 <span>My Bookings</span>
                             </Link>
-                            <Link className="transition-all rounded p-2 flex items-center gap-2 hover:bg-gray-100" to="/my-hotels">
-                                <IoBusinessOutline className="h-5 w-5" />
+                            <Link className="transition-all rounded p-2 flex items-center hover:bg-gray-100" to="/my-hotels">
+                                <IoBusinessOutline size={25} className="mr-2" />
                                 <span>My Hotels</span>
                             </Link>
                             <hr className="my-1" />
@@ -68,12 +68,12 @@ export const Header = () => {
                                     <SignOutButton isSmallScreen={isOpen} />
                                 ) : (
                                     <>
-                                        <Link className="transition-all rounded p-2 flex items-center gap-2 hover:bg-gray-100" to="/sign-in">
-                                            <IoEnterOutline className="h-5 w-5" />
+                                        <Link className="transition-all rounded p-2 flex items-center hover:bg-gray-100" to="/sign-in">
+                                            <IoEnterOutline size={25} className="mr-2" />
                                             <span>Sign in</span>
                                         </Link>
-                                        <Link className="transition-all rounded p-2 flex items-center gap-2 hover:bg-gray-100" to="/register">
-                                            <IoPersonAddOutline className="h-5 w-5" />
+                                        <Link className="transition-all rounded p-2 flex items-center hover:bg-gray-100" to="/register">
+                                            <IoPersonAddOutline size={25} className="mr-2" />
                                             <span>Register</span>
                                         </Link>
                                     </>
