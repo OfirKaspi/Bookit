@@ -4,7 +4,6 @@ import { logger } from '../../services/logger.service'
 
 export async function getMyBookings(req: Request, res: Response) {
     try {
-        console.log(req.userId)
         const results = await getHotelsWithUserBookings(req.userId)
         res.status(200).send(results)
     } catch (err) {

@@ -1,33 +1,32 @@
-import { Request } from 'express';
-import Hotel from '../../models/hotel';
-import { BookingType, HotelSearchResponse } from '../../shared/types';
+import { Request } from 'express'
+import Hotel from '../../models/hotel'
+import { BookingType, HotelSearchResponse } from '../../shared/types'
 import Stripe from 'stripe'
 
 const stripe = new Stripe(process.env.STRIPE_API_KEY as string)
 
-// GOOD!
 export const searchHotels = async (req: Request) => {
     try {
-        const query = constructSearchQuery(req.query);
+        const query = constructSearchQuery(req.query)
 
-        let sortOption = {};
+        let sortOption = {}
         switch (req.query.sortOption) {
             case 'starRating':
-                sortOption = { starRating: -1 };
-                break;
+                sortOption = { starRating: -1 }
+                break
             case 'pricePerNightAsc':
-                sortOption = { pricePerNight: 1 };
-                break;
+                sortOption = { pricePerNight: 1 }
+                break
             case 'pricePerNightDesc':
-                sortOption = { pricePerNight: -1 };
-                break;
+                sortOption = { pricePerNight: -1 }
+                break
         }
 
-        const pageSize = 5;
+        const pageSize = 5
         const pageNumber = parseInt(req.query.page ? req.query.page.toString() : '1')
-        const skip = (pageNumber - 1) * pageSize;
-        const hotels = await Hotel.find(query).sort(sortOption).skip(skip).limit(pageSize);
-        const total = await Hotel.countDocuments(query);
+        const skip = (pageNumber - 1) * pageSize
+        const hotels = await Hotel.find(query).sort(sortOption).skip(skip).limit(pageSize)
+        const total = await Hotel.countDocuments(query)
 
         const response: HotelSearchResponse = {
             data: hotels,
@@ -36,31 +35,29 @@ export const searchHotels = async (req: Request) => {
                 page: pageNumber,
                 pages: Math.ceil(total / pageSize)
             }
-        };
+        }
 
-        return response;
+        return response
     } catch (err) {
         throw err
     }
 }
 
-// GOOD!
 export const getAllHotels = async () => {
     try {
         const hotels = await Hotel.find().sort('-lastUpdated')
-        return hotels;
+        return hotels
     } catch (err) {
-        throw err;
+        throw err
     }
 }
 
-// GOOD!
 export const getHotelById = async (id: string) => {
     try {
-        const hotel = await Hotel.findById(id);
-        return hotel;
+        const hotel = await Hotel.findById(id)
+        return hotel
     } catch (err) {
-        throw err;
+        throw err
     }
 }
 
@@ -96,7 +93,6 @@ export const createBooking = async (req: Request) => {
     }
 }
 
-// GOOD!
 export const createBookingPaymentIntent = async (req: Request) => {
     try {
         const { numberOfNights } = req.body

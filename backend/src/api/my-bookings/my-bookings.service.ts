@@ -3,8 +3,6 @@ import { HotelType } from '../../shared/types'
 
 export async function getHotelsWithUserBookings(userId: string): Promise<HotelType[]> {
     try {
-        console.log(userId);
-
         const hotels = await Hotel.find({
             bookings: { $elemMatch: { userId: userId } }
         })

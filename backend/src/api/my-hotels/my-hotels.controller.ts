@@ -43,11 +43,9 @@ export async function updateHotel(req: Request, res: Response) {
     try {
         const userId = req.userId
         const hotelId = req.params.hotelId
-        console.log('hotelId', hotelId);
 
         const updatedHotel: HotelType = req.body
         const imageFiles = req.files as Express.Multer.File[]
-        console.log('imageFiles', imageFiles);
 
         const hotel = await updateHotelService(hotelId, updatedHotel, userId, imageFiles)
         res.status(201).json(hotel)
