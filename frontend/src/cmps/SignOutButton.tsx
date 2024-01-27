@@ -3,7 +3,11 @@ import { useAppContext } from "../contexts/AppContext"
 import { signOut } from "../services/user.service"
 import { useNavigate } from "react-router"
 
-export const SignOutButton = () => {
+type Props = {
+    isSmallScreen: boolean
+}
+
+export const SignOutButton = ({ isSmallScreen }: Props) => {
 
     const queryClient = useQueryClient()
     const { showToast } = useAppContext()
@@ -24,9 +28,12 @@ export const SignOutButton = () => {
         mutation.mutate()
     }
 
+    const bigScreenStyling = 'lg:w-fit lg:bg-white lg:font-medium lg:px-2 lg:py-1 lg:transition-all lg:hover:bg-gray-100 lg:hover:text-blue-900 lg:inline-block'
+    const smallScreenStyling = 'w-full flex justify-start hover:bg-gray-100'
+
     return (
-        <button onClick={handleClick} className="rounded text-blue-600 px-3 font-bold bg-white hover:bg-gray-100 h-[40px]">
-            Sign Out
+        <button onClick={handleClick} className={`${isSmallScreen ? smallScreenStyling : bigScreenStyling} text-blue-600 rounded p-2 `}>
+            Sign out
         </button>
     )
 }
