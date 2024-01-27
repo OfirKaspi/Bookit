@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from "react-query"
 import { useAppContext } from "../contexts/AppContext"
 import { signOut } from "../services/user.service"
 import { useNavigate } from "react-router"
+import { IoExitOutline } from "react-icons/io5"
 
 type Props = {
     isSmallScreen: boolean
@@ -28,12 +29,13 @@ export const SignOutButton = ({ isSmallScreen }: Props) => {
         mutation.mutate()
     }
 
-    const bigScreenStyling = 'lg:w-fit lg:bg-white lg:font-medium lg:px-2 lg:py-1 lg:transition-all lg:hover:bg-gray-100 lg:hover:text-blue-900 lg:inline-block'
-    const smallScreenStyling = 'w-full flex justify-start hover:bg-gray-100'
+    const bigScreenStyling = 'w-fit bg-white font-medium px-2 py-1 hover:bg-gray-100 hover:text-blue-900 inline-block text-blue-600'
+    const smallScreenStyling = 'w-full flex justify-start hover:bg-gray-100 flex items-center gap-2'
 
     return (
-        <button onClick={handleClick} className={`${isSmallScreen ? smallScreenStyling : bigScreenStyling} text-blue-600 rounded p-2 `}>
-            Sign out
+        <button onClick={handleClick} className={`${isSmallScreen ? smallScreenStyling : bigScreenStyling} transition-all rounded p-2`}>
+            {isSmallScreen && <IoExitOutline className="h-5 w-5" />}
+            <span>Sign out</span>
         </button>
     )
 }

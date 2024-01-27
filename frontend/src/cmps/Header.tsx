@@ -2,8 +2,7 @@ import { Link } from "react-router-dom"
 import { useAppContext } from "../contexts/AppContext"
 import { SignOutButton } from "./SignOutButton"
 import { useState } from "react"
-import { VscAccount } from "react-icons/vsc";
-
+import { IoBusinessOutline, IoCalendarOutline, IoEnterOutline, IoHomeOutline, IoLogInOutline, IoPersonAddOutline } from "react-icons/io5";
 
 export const Header = () => {
 
@@ -16,7 +15,7 @@ export const Header = () => {
                 <Link to="/">
                     <img src="https://res.cloudinary.com/dudwjf2pu/image/upload/v1705691035/Bookit.com_jn9ebb.svg" alt="bookit image" className="w-[150px]" />
                 </Link>
-                <button onClick={() => setIsOpen(!isOpen)} className="lg:hidden text-blue-500">
+                <button onClick={() => setIsOpen(!isOpen)} className="lg:hidden text-white">
                     {isOpen ? (
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -48,23 +47,40 @@ export const Header = () => {
                 </div>
             </div>
             {isOpen &&
-                <div className="block bg-white">
-                    <ul className="container p-4 mx-auto">
-                        <li><Link className="text-blue-600 block rounded p-2 hover:bg-gray-100 " to="/">Home</Link></li>
-                        <li><Link className="text-blue-600 block rounded p-2 hover:bg-gray-100" to="/my-bookings">My Bookings</Link></li>
-                        <li><Link className="text-blue-600 block rounded p-2 hover:bg-gray-100" to="/my-hotels">My Hotels</Link></li>
-                        <hr className="my-1" />
-                        {isLoggedIn
-                            ? (
-                                <li><SignOutButton isSmallScreen={isOpen} /></li>
-                            ) : (
-                                <>
-                                    <li><Link className="text-blue-600 block rounded p-2 hover:bg-gray-100" to="/sign-in">Sign in</Link></li>
-                                    <li><Link className="text-blue-600 block rounded p-2 hover:bg-gray-100" to="/register">Register</Link></li>
-                                </>
-                            )
-                        }
-                    </ul>
+                <div className="block container mx-auto rounded px-4 pb-2">
+                    <div className="bg-amber-400 rounded p-1">
+                        <div className="rounded bg-white p-1">
+                            <Link className="transition-all rounded p-2 flex items-center gap-2 hover:bg-gray-100" to="/">
+                                <IoHomeOutline className="h-5 w-5" />
+                                <span>Home</span>
+                            </Link>
+                            <Link className="transition-all rounded p-2 flex items-center gap-2 hover:bg-gray-100" to="/my-bookings">
+                                <IoCalendarOutline className="h-5 w-5" />
+                                <span>My Bookings</span>
+                            </Link>
+                            <Link className="transition-all rounded p-2 flex items-center gap-2 hover:bg-gray-100" to="/my-hotels">
+                                <IoBusinessOutline className="h-5 w-5" />
+                                <span>My Hotels</span>
+                            </Link>
+                            <hr className="my-1" />
+                            {isLoggedIn
+                                ? (
+                                    <SignOutButton isSmallScreen={isOpen} />
+                                ) : (
+                                    <>
+                                        <Link className="transition-all rounded p-2 flex items-center gap-2 hover:bg-gray-100" to="/sign-in">
+                                            <IoEnterOutline className="h-5 w-5" />
+                                            <span>Sign in</span>
+                                        </Link>
+                                        <Link className="transition-all rounded p-2 flex items-center gap-2 hover:bg-gray-100" to="/register">
+                                            <IoPersonAddOutline className="h-5 w-5" />
+                                            <span>Register</span>
+                                        </Link>
+                                    </>
+                                )
+                            }
+                        </div>
+                    </div>
                 </div>
             }
         </div>
