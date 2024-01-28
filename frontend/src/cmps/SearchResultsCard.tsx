@@ -12,7 +12,7 @@ export const SearchResultsCard = ({ hotel }: Props) => {
             <div className="sm:h-[200px]">
                 <img src={hotel.imageUrls[0]} className="w-full h-full rounded-lg object-cover object-center" />
             </div>
-            <div className="grid gap-2 sm:grid-cols-[1fr_200px]">
+            <div className="grid gap-2 sm:grid-cols-[1fr_150px]">
                 <div className="flex flex-col gap-2 justify-between">
                     <div className="flex flex-col sm:gap-2">
                         <div className="flex flex-col self-start items-center sm:gap-1 sm:flex-row">
