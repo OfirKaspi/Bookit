@@ -1,9 +1,13 @@
-import { FormEvent, useState } from "react"
-import { useSearchContext } from "../contexts/SearchContext"
-import { MdTravelExplore } from "react-icons/md"
-import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
+import { FormEvent, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import DatePicker from "react-datepicker"
+import { useSearchContext } from "../contexts/SearchContext"
+
+import { MdTravelExplore } from "react-icons/md"
+import { FaChildren } from "react-icons/fa6"
+import { ImManWoman } from "react-icons/im"
+import { BsCalendarEvent, BsCalendarWeek } from "react-icons/bs"
 
 export const SearchBar = () => {
     const search = useSearchContext()
@@ -34,7 +38,7 @@ export const SearchBar = () => {
     return (
         <form
             onSubmit={handleSubmit}
-            className="-mt-8 p-1 bg-amber-400 rounded shadow-md grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-5 gap-1"
+            className="-mt-8 p-1 bg-amber-400 rounded shadow-md grid grid-cols-1  2xl:grid-cols-4 gap-1"
         >
             <div className="flex flex-row rounded items-center flex-1 bg-white p-2">
                 <MdTravelExplore size={25} className="mr-2" />
@@ -46,11 +50,12 @@ export const SearchBar = () => {
                 />
             </div>
 
-            <div className="flex rounded  bg-white px-2 py-1 gap-2">
-                <label className="items-center flex">
-                    Adults:
+            <div className="flex bg-amber-400 gap-1">
+                <label className="w-1/2 rounded bg-white items-center flex p-2">
+                    <ImManWoman size={25} className="mr-2" />
+                    <span>Adults:</span>
                     <input
-                        className="w-full p-1 focus:outline-none font-bold"
+                        className="pl-1 w-10 focus:outline-none font-bold"
                         type="number"
                         min={1}
                         max={20}
@@ -58,10 +63,11 @@ export const SearchBar = () => {
                         onChange={(event) => setAdultCount(parseInt(event.target.value))}
                     />
                 </label>
-                <label className="items-center flex">
-                    Children:
+                <label className="w-1/2 rounded bg-white items-center flex p-2">
+                    <FaChildren size={25} className="mr-2 min-w-fit" />
+                    <span>Children:</span>
                     <input
-                        className="w-full p-1 focus:outline-none font-bold"
+                        className="pl-1 w-10 focus:outline-none font-bold"
                         type="number"
                         min={0}
                         max={20}
@@ -70,35 +76,43 @@ export const SearchBar = () => {
                     />
                 </label>
             </div>
-            <div className="relative group">
-                <span className="absolute invisible group-hover:visible top-2 right-2 z-10 text-slate-400">Check in date</span>
-                <DatePicker
-                    selected={checkIn}
-                    onChange={(date) => setCheckIn(date as Date)}
-                    selectsStart
-                    startDate={checkIn}
-                    endDate={checkOut}
-                    minDate={minDate}
-                    maxDate={maxDate}
-                    placeholderText="Check-in Date"
-                    className="rounded min-w-full bg-white p-2 focus:outline-none"
-                    wrapperClassName="min-w-full"
-                />
-            </div>
-            <div className="relative group">
-                <span className="absolute invisible group-hover:visible top-2 right-2 z-10 text-slate-400">Check out date</span>
-                <DatePicker
-                    selected={checkOut}
-                    onChange={(date) => setCheckOut(date as Date)}
-                    selectsStart
-                    startDate={checkIn}
-                    endDate={checkOut}
-                    minDate={minDate}
-                    maxDate={maxDate}
-                    placeholderText="Check-out Date"
-                    className="rounded min-w-full bg-white p-2 focus:outline-none"
-                    wrapperClassName="min-w-full"
-                />
+            <div className="flex gap-1">
+                <div className="relative w-1/2 rounded group bg-white p-2">
+                    <span className="absolute invisible sm:group-hover:visible right-2 z-10 text-slate-400  min-w-max 2xl:-top-8 2xl:text-white 2xl:left-1/2 transform 2xl:-translate-x-1/2">Check in date</span>
+                    <div className="flex">
+                        <BsCalendarEvent size={25} className="mr-2" />
+                        <DatePicker
+                            selected={checkIn}
+                            onChange={(date) => setCheckIn(date as Date)}
+                            selectsStart
+                            startDate={checkIn}
+                            endDate={checkOut}
+                            minDate={minDate}
+                            maxDate={maxDate}
+                            placeholderText="Check-in Date"
+                            className="w-full cursor-pointer focus:outline-none"
+                            wrapperClassName="w-full"
+                        />
+                    </div>
+                </div>
+                <div className="relative w-1/2 rounded group bg-white p-2">
+                    <span className="absolute invisible sm:group-hover:visible right-2 z-10 text-slate-400  min-w-max 2xl:-top-8 2xl:text-white 2xl:left-1/2 2xl:transform 2xl:-translate-x-1/2">Check out date</span>
+                    <div className="flex">
+                        <BsCalendarWeek size={25} className="mr-2" />
+                        <DatePicker
+                            selected={checkOut}
+                            onChange={(date) => setCheckOut(date as Date)}
+                            selectsStart
+                            startDate={checkIn}
+                            endDate={checkOut}
+                            minDate={minDate}
+                            maxDate={maxDate}
+                            placeholderText="Check-out Date"
+                            className="w-full cursor-pointer focus:outline-none"
+                            wrapperClassName="w-full"
+                        />
+                    </div>
+                </div>
             </div>
 
             <div className="flex gap-1">
