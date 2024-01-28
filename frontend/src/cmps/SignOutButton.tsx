@@ -34,7 +34,6 @@ export const SignOutButton = ({ isSmallScreen }: Props) => {
 
     return (
         <button onClick={handleClick} className={`${isSmallScreen ? smallScreenStyling : bigScreenStyling} transition-all rounded p-2`}>
-            {/* {isSmallScreen && <IoExitOutline className="h-5 w-5" />} */}
             {isSmallScreen && <IoExitOutline size={25} className="mr-2" />}
             <span>Sign out</span>
         </button>
