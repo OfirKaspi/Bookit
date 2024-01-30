@@ -8,9 +8,9 @@ export const FacilitiesSection = () => {
     return (
         <div>
             <h2 className="text-2xl font-bold mb-3">Facilities</h2>
-            <div className="grid grid-cols-5 gap-3 items-center">
+            <div className="flex gap-2 flex-wrap">
                 {hotelFacilities.map((facility, idx) => (
-                    <label key={idx} className="text-sm flex gap-1 text-gray-700">
+                    <label key={idx} className="text-sm flex p-1 gap-2 text-gray-700">
                         <input
                             type="checkbox"
                             value={facility}
