@@ -27,8 +27,8 @@ export const SearchResultsCard = ({ hotel }: Props) => {
                         <div className="hidden sm:line-clamp-4">{hotel.description}</div>
                     </div>
                     <div className="flex gap-2 items-center flex-wrap">
-                        {hotel.facilities.slice(0, 3).map((facility) => (
-                            <span className="bg-slate-300 p-2 rounded-lg font-bold text-xs whitespace-nowrap">
+                        {hotel.facilities.slice(0, 3).map((facility, idx) => (
+                            <span key={idx} className="bg-slate-300 p-2 rounded-lg font-bold text-xs whitespace-nowrap">
                                 {facility}
                             </span>
                         ))}

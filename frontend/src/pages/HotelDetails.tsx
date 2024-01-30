@@ -23,8 +23,8 @@ export const HotelDetails = () => {
                         <h3 className="text-3xl font-bold mb-2">{hotel.name}</h3>
                         <div className="flex items-center">
                             <span className="mr-2">{hotel.city}, {hotel.country}</span>
-                            {Array.from({ length: hotel.starRating }).map(() => (
-                                <AiFillStar className="fill-yellow-400" />
+                            {Array.from({ length: hotel.starRating }).map((length, idx) => (
+                                <AiFillStar key={idx} className="fill-yellow-400" />
                             ))}
                         </div>
                     </div>
@@ -41,8 +41,8 @@ export const HotelDetails = () => {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-6 gap-2">
-                {hotel.facilities.map((facility) => (
-                    <div className="border border-slate-300 rounded-sm p-3">
+                {hotel.facilities.map((facility, idx) => (
+                    <div key={idx} className="border border-slate-300 rounded-sm p-3">
                         {facility}
                     </div>
                 ))}

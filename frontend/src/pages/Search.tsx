@@ -89,7 +89,7 @@ export const Search = () => {
                     <SortBy sortOption={sortOption} setSortOption={setSortOption} />
                 </div>
                 {hotelData?.data.map((hotel) => (
-                    <SearchResultsCard hotel={hotel} />
+                    <SearchResultsCard key={hotel._id} hotel={hotel} />
                 ))}
                 <div>
                     <Pagination
