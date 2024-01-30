@@ -3,7 +3,7 @@ import { createPaymentIntent, fetchHotelById } from "../services/hotel.service"
 import { fetchCurrentUser } from "../services/user.service"
 import { BookingForm } from "../forms/BookingForm/BookingForm"
 import { useSearchContext } from "../contexts/SearchContext"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { BookingDetailsSummary } from "../cmps/BookingDetailsSummary"
 import { useAppContext } from "../contexts/AppContext"
@@ -11,9 +11,10 @@ import { Elements } from "@stripe/react-stripe-js"
 import { Loader } from "../cmps/Loader"
 
 export const Booking = () => {
-    const { stripePromise } = useAppContext()
+    const { stripePromise, isLoggedIn } = useAppContext()
     const search = useSearchContext()
     const { hotelId } = useParams()
+    const navigate = useNavigate()
 
     const [numberOfNights, setNumberOfNights] = useState<number>(0)
 
@@ -39,6 +40,8 @@ export const Booking = () => {
         'detchCurrentUser',
         fetchCurrentUser
     )
+
+    if (!isLoggedIn) navigate('/sign-in')
 
     if (!hotel) return <Loader />
 

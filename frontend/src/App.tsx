@@ -11,11 +11,9 @@ import { HotelDetails } from './pages/HotelDetails';
 import { Booking } from './pages/Booking';
 import { MyBookings } from './pages/MyBookings';
 import { Home } from './pages/Home';
+import { PageNotFound } from './pages/PageNotFound';
 
 const App = () => {
-
-  const { isLoggedIn } = useAppContext()
-
   return (
     <Router>
       <Routes>
@@ -24,15 +22,14 @@ const App = () => {
         <Route path='/detail/:hotelId' element={<Layout><HotelDetails /></Layout>} />
         <Route path='/register' element={<Layout><Register /></Layout>} />
         <Route path='/sign-in' element={<Layout><SignIn /></Layout>} />
-        {isLoggedIn && (
-          <>
-            <Route path='/add-hotel' element={<Layout><AddHotel /></Layout>} />
-            <Route path='/my-bookings' element={<Layout><MyBookings /></Layout>} />
-            <Route path='/my-hotels' element={<Layout><MyHotels /></Layout>} />
-            <Route path='/edit-hotel/:hotelId' element={<Layout><EditHotel /></Layout>} />
-            <Route path='/hotel/:hotelId/booking' element={<Layout><Booking /></Layout>} />
-          </>
-        )}
+        {/* needs auth */}
+        <Route path='/add-hotel' element={<Layout><AddHotel /></Layout>} />
+        <Route path='/my-bookings' element={<Layout><MyBookings /></Layout>} />
+        <Route path='/my-hotels' element={<Layout><MyHotels /></Layout>} />
+        <Route path='/edit-hotel/:hotelId' element={<Layout><EditHotel /></Layout>} />
+        <Route path='/hotel/:hotelId/booking' element={<Layout><Booking /></Layout>} />
+
+        <Route path='*' element={<Layout><PageNotFound /></Layout>} />
       </Routes>
     </Router>
   )

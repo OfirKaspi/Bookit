@@ -1,11 +1,18 @@
 import { useQuery } from "react-query"
 import { fetchMyBookings } from "../services/hotel.service"
 import { Loader } from "../cmps/Loader"
+import { useAppContext } from "../contexts/AppContext"
+import { useNavigate } from "react-router-dom"
 
 export const MyBookings = () => {
     const { data: hotels } = useQuery('fetchMyBookings', fetchMyBookings)
+    const { isLoggedIn } = useAppContext()
+    const navigate = useNavigate()
+
+    if (!isLoggedIn) navigate('/sign-in')
 
     if (!hotels) return <Loader />
+
     if (hotels.length === 0) return <span>No bookings found</span>
 
     return (

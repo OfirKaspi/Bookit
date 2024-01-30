@@ -2,10 +2,12 @@ import { useMutation } from "react-query"
 import { ManageHotelForm } from "../forms/ManageHotelForm/ManageHotelForm"
 import { useAppContext } from "../contexts/AppContext"
 import { addMyHotel } from "../services/hotel.service"
+import { useNavigate } from "react-router-dom"
 
 export const AddHotel = () => {
 
-    const { showToast } = useAppContext()
+    const { showToast, isLoggedIn } = useAppContext()
+    const navigate = useNavigate()
 
     const { mutate, isLoading } = useMutation(addMyHotel, {
         onSuccess: async () => {
@@ -19,6 +21,8 @@ export const AddHotel = () => {
     const handleSave = (hotelFormData: FormData) => {
         mutate(hotelFormData)
     }
+
+    if (!isLoggedIn) navigate('/sign-in')
 
     return (
         <ManageHotelForm onSave={handleSave} isLoading={isLoading} />

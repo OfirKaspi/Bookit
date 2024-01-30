@@ -1,9 +1,10 @@
 import { useQuery } from "react-query"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { fetchMyHotels } from "../services/hotel.service"
 import { BsBuilding, BsMap } from "react-icons/bs"
 import { BiHotel, BiMoney, BiStar } from "react-icons/bi"
 import { Loader } from "../cmps/Loader"
+import { useAppContext } from "../contexts/AppContext"
 
 export const MyHotels = () => {
 
@@ -12,6 +13,11 @@ export const MyHotels = () => {
 
         }
     })
+
+    const { isLoggedIn } = useAppContext()
+    const navigate = useNavigate()
+
+    if (!isLoggedIn) navigate('/sign-in')
 
     if (!hotelData) return <Loader />
     if (hotelData.length === 0) return <span>No hotels found</span>
