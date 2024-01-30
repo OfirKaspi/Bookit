@@ -5,6 +5,7 @@ import { BsBuilding, BsMap } from "react-icons/bs"
 import { BiHotel, BiMoney, BiStar } from "react-icons/bi"
 import { Loader } from "../cmps/Loader"
 import { useAppContext } from "../contexts/AppContext"
+import { fetchCurrentUser } from "../services/user.service"
 
 export const MyHotels = () => {
 
@@ -20,7 +21,32 @@ export const MyHotels = () => {
     if (!isLoggedIn) navigate('/sign-in')
 
     if (!hotelData) return <Loader />
-    if (hotelData.length === 0) return <span>No hotels found</span>
+
+    const { data: currentUser } = useQuery(
+        'detchCurrentUser',
+        fetchCurrentUser
+    )
+
+    if (hotelData.length === 0) return (
+        <div className="flex flex-col gap-4">
+            <p className="flex flex-col gap-3">
+                <span>Dear <span className="text-blue-600">{currentUser?.lastName} {currentUser?.firstName}</span>,</span>
+                <span>
+                    Welcome to our platform! We noticed that you haven't added any hotels yet.
+                    It's the perfect time to showcase your hospitality venture to our community of travelers.
+                    Adding your first hotel is easy and takes just a few moments.
+                    Simply click on the "Add Hotel" button to get started.
+                    Whether it's a charming boutique stay, a cozy bed and breakfast, or a luxurious resort,
+                    your property deserves to be discovered by travelers around the world.
+                    Don't miss out on this opportunity to share your unique space and hospitality with our global audience.
+                    We're here to support you every step of the way.
+                </span>
+                <span>Happy hosting!</span>
+                <span><span className="text-blue-600">Bookit</span> Team</span>
+            </p>
+            <Link to="/add-hotel" className="flex rounded bg-blue-600 text-white w-fit self-end text-xl font-bold p-2 hover:bg-blue-500">Add Hotel</Link>
+        </div>
+    )
 
     return (
         <div className="space-y-5">
