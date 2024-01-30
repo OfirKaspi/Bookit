@@ -28,7 +28,7 @@ export const HotelDetails = () => {
                             ))}
                         </div>
                     </div>
-                    <BookNowButton />
+                    {/* <BookNowButton /> */}
                 </span>
             </div>
 
