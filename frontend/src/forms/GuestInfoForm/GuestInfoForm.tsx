@@ -63,6 +63,19 @@ export const GuestInfoForm = ({ hotelId, pricePerNight }: Props) => {
         navigate(`/hotel/${hotelId}/booking`, { state: { from: location } })
     }
 
+    const handleButtonClick = () => {
+        if (isLoggedIn) {
+            handleSubmit(onSubmit)();
+        } else {
+            onSignInClick({
+                checkIn: watch('checkIn'),
+                checkOut: watch('checkOut'),
+                adultCount: watch('adultCount'),
+                childCount: watch('childCount')
+            })
+        }
+    }
+
     return (
         <div className="flex flex-col p-4 bg-blue-200 gap-4 rounded">
             <div className=" flex flex-col gap-2">
@@ -72,7 +85,7 @@ export const GuestInfoForm = ({ hotelId, pricePerNight }: Props) => {
                     <span className="text-sm text-slate-600">Includes taxes and charges</span>
                 </div>
             </div>
-            <form onSubmit={isLoggedIn ? handleSubmit(onSubmit) : handleSubmit(onSignInClick)}>
+            <div>
                 <div className="grid grid-cols-1 gap-4 items-center">
                     <div className="flex rounded group bg-white p-2">
                         <BsCalendarEvent size={25} className="mr-2" />
@@ -141,9 +154,9 @@ export const GuestInfoForm = ({ hotelId, pricePerNight }: Props) => {
                             </span>
                         )}
                     </div>
-                    <BookNowButton />
+                    <BookNowButton onSubmit={handleButtonClick} />
                 </div>
-            </form>
+            </div>
         </div>
     )
 }
