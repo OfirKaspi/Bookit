@@ -2,10 +2,12 @@ import { useQuery } from "react-query"
 import { fetchMyBookings } from "../services/hotel.service"
 import { Loader } from "../cmps/Loader"
 import { useAppContext } from "../contexts/AppContext"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import { fetchCurrentUser } from "../services/user.service"
 
 export const MyBookings = () => {
     const { data: hotels } = useQuery('fetchMyBookings', fetchMyBookings)
+    const { data: currentUser } = useQuery('detchCurrentUser', fetchCurrentUser)
     const { isLoggedIn } = useAppContext()
     const navigate = useNavigate()
 
@@ -13,7 +15,32 @@ export const MyBookings = () => {
 
     if (!hotels) return <Loader />
 
-    if (hotels.length === 0) return <span>No bookings found</span>
+    if (currentUser && hotels.length === 0) return (
+        <div className="flex flex-col gap-4">
+            <p className="flex flex-col gap-3">
+                <span>Dear <span className="text-blue-600">{currentUser?.lastName} {currentUser?.firstName}</span>,</span>
+                <span>
+                    Welcome to our platform! We've noticed that you haven't booked any hotels for a vacation yet.
+                    Now is the perfect time to plan your next getaway and discover amazing accommodations tailored to your preferences.
+                    Booking your first hotel is simple and quick, allowing you to explore new destinations with ease.
+                    Whether you're seeking a tranquil retreat, an adventurous escape, or a relaxing beachfront stay,
+                    our platform offers a diverse selection of options to suit your travel needs.
+                </span>
+                <span>
+                    Take the first step towards your dream vacation by browsing through our wide range of accommodations.
+                    From cozy retreats nestled in nature to luxurious resorts offering unparalleled comfort, there's something for every traveler.
+                    Don't miss out on the chance to create unforgettable memories and immerse yourself in new experiences.
+                </span>
+                <span>
+                    Start planning your next adventure today by booking your first hotel with us.
+                    Our team is here to assist you at every stage of your journey, ensuring a seamless and enjoyable booking process.
+                </span>
+                <span>Happy travels!</span>
+                <span><span className="text-blue-600">Bookit</span> Team</span>
+            </p>
+            <Link to="/search" className="flex rounded bg-blue-600 text-white w-fit self-end text-xl font-bold p-2 hover:bg-blue-500">Book Hotels</Link>
+        </div>
+    )
 
     return (
         <div className="space-y-5">

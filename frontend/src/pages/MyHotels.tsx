@@ -8,7 +8,7 @@ import { useAppContext } from "../contexts/AppContext"
 import { fetchCurrentUser } from "../services/user.service"
 
 export const MyHotels = () => {
-
+    const { data: currentUser } = useQuery('detchCurrentUser', fetchCurrentUser)
     const { data: hotelData } = useQuery('fetchMyHotels', fetchMyHotels, {
         onError: () => {
 
@@ -21,11 +21,6 @@ export const MyHotels = () => {
     if (!isLoggedIn) navigate('/sign-in')
 
     if (!hotelData) return <Loader />
-
-    const { data: currentUser } = useQuery(
-        'detchCurrentUser',
-        fetchCurrentUser
-    )
 
     if (hotelData.length === 0) return (
         <div className="flex flex-col gap-4">
