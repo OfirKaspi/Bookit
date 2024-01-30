@@ -15,7 +15,7 @@ export const Layout = ({ children }: Props) => {
             <div className="container mx-auto p-4">
                 <SearchBar />
             </div>
-            <div className="container mx-auto py-10 flex-1 p-4">
+            <div className="container mx-auto flex-1 p-4">
                 {children}
             </div>
             <Footer />
