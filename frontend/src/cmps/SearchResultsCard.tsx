@@ -9,19 +9,20 @@ type Props = {
 export const SearchResultsCard = ({ hotel }: Props) => {
     return (
         <div className="grid grid-cols-[140px_1fr] sm:grid-cols-[200px_1fr] border border-slate-300 rounded-lg p-4 gap-4">
-            <div className="sm:h-[200px]">
+            <div >
                 <img src={hotel.imageUrls[0]} className="w-full h-full rounded-lg object-cover object-center" />
             </div>
             <div className="grid gap-2 sm:grid-cols-[1fr_150px]">
                 <div className="flex flex-col gap-2 justify-between">
                     <div className="flex flex-col sm:gap-2">
-                        <div className="flex flex-col self-start items-center sm:gap-1 sm:flex-row">
-                            <span className="flex">
-                                {Array.from({ length: hotel.starRating }).map(() => (
-                                    <AiFillStar className="fill-yellow-400" />
+                        <div className="flex flex-col items-start sm:gap-2 md:flex-row">
+                            <span className="flex md:self-center">
+                                {Array.from({ length: hotel.starRating }).map((length, idx) => (
+                                    <AiFillStar key={idx} className="fill-yellow-400" />
                                 ))}
                             </span>
-                            <span className="text-md self-start">{hotel.type}</span>
+                            <span className="text-md">{hotel.type}</span>
+                            <span className="text-blue-600">{hotel.city}, {hotel.country}</span>
                         </div>
                         <Link to={`/detail/${hotel._id}`} className="text-2xl font-bold text-blue-600 cursor-pointer">{hotel.name}</Link>
                         <div className="hidden sm:line-clamp-4">{hotel.description}</div>

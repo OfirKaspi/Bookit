@@ -10,7 +10,7 @@ export const SortBy = ({ sortOption, setSortOption }: Props) => {
         <select
             value={sortOption}
             onChange={(event: ChangeEvent<HTMLSelectElement>) => setSortOption(event.target.value)}
-            className="p-2 border rounded-md"
+            className="p-2 border rounded-md border-slate-300 w-full sm:w-fit"
         >
             <option value="">Sort By</option>
             <option value="starRating">Star Rating</option>

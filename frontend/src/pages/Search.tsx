@@ -19,6 +19,7 @@ export const Search = () => {
     const [selectedFacilities, setSelectedFacilities] = useState<string[]>([])
     const [selectedPrice, setSelectedPrice] = useState<number | undefined>()
     const [sortOption, setSortOption] = useState<string>('')
+    const [isCollapsed, setIsCollapsed] = useState<boolean>(false)
 
     const searchParams = {
         destination: search.destination,
@@ -70,10 +71,15 @@ export const Search = () => {
     return (
         <div className="grid grid-cols-1 lg:grid-cols-[250px_1fr] gap-5">
             <div className="rounded-lg border border-slate-300 p-5 h-fit">
-                <div className="space-y-5">
-                    <h3 className="text-lg font-semibold border-b border-slate-300 pb-5">
-                        Filter by:
-                    </h3>
+                <div className={`${isCollapsed ? 'block' : 'hidden'} flex justify-between lg:hidden`}>
+                    <h3 className="text-lg self-center font-semibold ">Filter by:</h3>
+                    <button onClick={() => setIsCollapsed(!isCollapsed)} className="rounded bg-blue-600 text-white sm:self-end w-fit px-2 py-1 hover:bg-blue-500" >Show Filter Section</button>
+                </div>
+                <div className={`space-y-5 ${isCollapsed ? 'hidden' : 'block'} lg:block`}>
+                    <div className="flex justify-between border-b border-slate-300 pb-5">
+                        <h3 className="text-lg font-semibold ">Filter by:</h3>
+                        <button onClick={() => setIsCollapsed(!isCollapsed)} className="rounded bg-blue-600 text-white sm:self-end w-fit px-2 py-1 hover:bg-blue-500 lg:hidden" >Close Filter Options</button>
+                    </div>
                     <StarRatingFilter selectedStars={selectedStars} onChange={handleStarsChange} />
                     <HotelTypesFilter selectedHotelTypes={selectedHotelTypes} onChange={handleHotelTypeChange} />
                     <FacilitiesFilter selectedFacilities={selectedFacilities} onChange={handleFacilityChange} />
@@ -81,11 +87,11 @@ export const Search = () => {
                 </div>
             </div>
             <div className="flex flex-col gap-5">
-                <div className="flex justify-between items-center">
-                    <span className="text-xl font-bold">
+                <div className="block justify-between items-center sm:flex">
+                    <div className="text-xl font-bold mb-5 sm:mb-0">
                         {hotelData?.pagination.total} Hotels found
                         {search.destination ? ` in ${search.destination}` : ''}
-                    </span>
+                    </div>
                     <SortBy sortOption={sortOption} setSortOption={setSortOption} />
                 </div>
                 {hotelData?.data.map((hotel) => (
