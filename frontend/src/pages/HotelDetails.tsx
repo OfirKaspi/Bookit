@@ -4,7 +4,7 @@ import { fetchHotelById } from "../services/hotel.service"
 import { AiFillStar } from "react-icons/ai"
 import { GuestInfoForm } from "../forms/GuestInfoForm/GuestInfoForm"
 import { Loader } from "../cmps/Loader"
-import { BookNowButton } from "../cmps/BookNowButton"
+// import { BookNowButton } from "../cmps/BookNowButton"
 
 export const HotelDetails = () => {
     const { hotelId } = useParams()
