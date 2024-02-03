@@ -17,8 +17,8 @@ export const SearchResultsCard = ({ hotel }: Props) => {
                     <div className="flex flex-col sm:gap-2">
                         <div className="flex flex-col items-start sm:gap-2 md:flex-row">
                             <span className="flex md:self-center">
-                                {Array.from({ length: hotel.starRating }).map((length, idx) => (
-                                    <AiFillStar key={idx} className="fill-yellow-400" />
+                                {Array.from({ length: hotel.starRating }).map((num) => (
+                                    <AiFillStar key={num} className="fill-yellow-400" />
                                 ))}
                             </span>
                             <span className="text-md">{hotel.type}</span>

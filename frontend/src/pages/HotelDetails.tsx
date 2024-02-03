@@ -23,8 +23,8 @@ export const HotelDetails = () => {
                         <h3 className="text-3xl font-bold mb-2">{hotel.name}</h3>
                         <div className="flex items-center">
                             <span className="mr-2">{hotel.city}, {hotel.country}</span>
-                            {Array.from({ length: hotel.starRating }).map((length, idx) => (
-                                <AiFillStar key={idx} className="fill-yellow-400" />
+                            {Array.from({ length: hotel.starRating }).map((num) => (
+                                <AiFillStar key={num} className="fill-yellow-400" />
                             ))}
                         </div>
                     </div>
